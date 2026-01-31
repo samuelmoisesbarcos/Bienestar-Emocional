@@ -6,21 +6,27 @@
 
 <style>
 :root {
-    --principal: #1f3a5f;
-    --secundario: #2f5d8a;
-    --fondo: #f2f4f7;
+    --principal: #2b6cb0;
+    --secundario: #63b3ed;
+    --fondo: #edf6ff;
     --texto: #2b2b2b;
 }
 
 body {
     font-family: Arial, sans-serif;
-    background-color: var(--fondo);
     margin: 0;
     color: var(--texto);
+
+    /* FONDO CON TU IMAGEN */
+    background-image: url("1.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 header {
-    background-color: var(--principal);
+    background-color: rgba(43,108,176,0.95);
     color: white;
     text-align: center;
     padding: 25px 15px;
@@ -32,11 +38,11 @@ main {
 }
 
 section {
-    background: white;
+    background: rgba(255,255,255,0.93);
     margin: 20px;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
 }
 
 h2 {
@@ -56,7 +62,7 @@ button {
     margin-top: 15px;
     padding: 12px 18px;
     background-color: var(--secundario);
-    color: white;
+    color: #03396c;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -64,13 +70,14 @@ button {
 
 button:hover {
     background-color: var(--principal);
+    color: white;
 }
 
 .rutina {
-    background-color: #eef2f6;
-    padding: 15px;
+    background-color: #f1f8ff;
+    padding: 18px;
     border-radius: 10px;
-    margin-top: 15px;
+    margin-top: 18px;
 }
 
 .video {
@@ -86,11 +93,10 @@ iframe {
 }
 
 footer {
-    background-color: var(--principal);
+    background-color: rgba(43,108,176,0.95);
     color: white;
     text-align: center;
     padding: 15px;
-    font-size: 14px;
 }
 </style>
 </head>
@@ -119,50 +125,34 @@ footer {
 
 <div id="consejos" class="rutina"></div>
 
-<!-- VIDEOS -->
-
 <div id="video-triste" class="video">
-<iframe 
-src="https://www.tiktok.com/embed/7600929509658955024"
-allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
+<iframe src="https://www.tiktok.com/embed/7600929509658955024"
+allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
 <div id="video-ansioso" class="video">
-<iframe 
-src="https://www.tiktok.com/embed/7411291586916601094"
-allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
+<iframe src="https://www.tiktok.com/embed/7411291586916601094"
+allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
 <div id="video-cansado" class="video">
-<iframe 
-src="https://www.tiktok.com/embed/7563972666072304910"
-allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
+<iframe src="https://www.tiktok.com/embed/7563972666072304910"
+allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
 <div id="video-feliz" class="video">
-<iframe 
-src="https://www.tiktok.com/embed/7520780620407065878"
-allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
+<iframe src="https://www.tiktok.com/embed/7520780620407065878"
+allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
-<!-- ENOJADO (FUNCIONAL) -->
 <div id="video-enojado" class="video">
-<iframe 
-src="https://www.tiktok.com/embed/7355965420848844038"
-allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
+<iframe src="https://www.tiktok.com/embed/7355965420848844038"
+allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
-<!-- INCOMPRENDIDO/A (FUNCIONAL) -->
 <div id="video-incomprendido" class="video">
-<iframe 
-src="https://www.tiktok.com/embed/7449487013373398277"
-allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
+<iframe src="https://www.tiktok.com/embed/7449487013373398277"
+allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
 </section>
@@ -176,10 +166,8 @@ A veces escribirlo ya es un alivio enorme.
 </p>
 
 <textarea id="desahogo" rows="6" placeholder="Este espacio es solo tuyo..."></textarea>
-
 <button onclick="guardarDesahogo()">Guardar lo que siento</button>
-
-<p id="mensajeGuardado" style="margin-top:10px; color:var(--secundario);"></p>
+<p id="mensajeGuardado" style="margin-top:10px; color:var(--principal);"></p>
 </section>
 
 </main>
@@ -199,53 +187,86 @@ function mostrarContenido() {
         triste: {
             texto: `
             <strong>Tristeza</strong><br><br>
-            <u>Posibles causas:</u>
-            <ul><li>Pérdidas o decepciones</li><li>Cansancio emocional</li></ul>
-            <u>Qué puede ayudarte:</u>
-            <ul><li>Hablar con alguien</li><li>Permitirte sentir</li></ul>`,
+            <strong>Posibles causas:</strong>
+            <ul>
+                <li>Pérdidas emocionales</li>
+                <li>Agotamiento mental</li>
+            </ul>
+            <strong>Posibles soluciones:</strong>
+            <ul>
+                <li>Hablar con alguien de confianza</li>
+                <li>Permitirte sentir sin culpa</li>
+            </ul>`,
             video: "video-triste"
         },
         ansioso: {
             texto: `
             <strong>Ansiedad</strong><br><br>
-            <u>Posibles causas:</u>
-            <ul><li>Sobrecarga mental</li><li>Incertidumbre</li></ul>
-            <u>Qué puede ayudarte:</u>
-            <ul><li>Respiración consciente</li><li>Anclarte al presente</li></ul>`,
+            <strong>Posibles causas:</strong>
+            <ul>
+                <li>Sobrecarga de pensamientos</li>
+                <li>Miedo a lo incierto</li>
+            </ul>
+            <strong>Posibles soluciones:</strong>
+            <ul>
+                <li>Respirar lento y profundo</li>
+                <li>Enfocarte en el ahora</li>
+            </ul>`,
             video: "video-ansioso"
         },
         cansado: {
             texto: `
             <strong>Cansancio</strong><br><br>
-            <u>Posibles causas:</u>
-            <ul><li>Exigencia constante</li><li>Poco descanso</li></ul>
-            <u>Qué puede ayudarte:</u>
-            <ul><li>Pausar sin culpa</li><li>Escucharte</li></ul>`,
+            <strong>Posibles causas:</strong>
+            <ul>
+                <li>Exigirte demasiado</li>
+                <li>Falta de descanso</li>
+            </ul>
+            <strong>Posibles soluciones:</strong>
+            <ul>
+                <li>Pausar sin sentir culpa</li>
+                <li>Escuchar a tu cuerpo</li>
+            </ul>`,
             video: "video-cansado"
         },
         feliz: {
             texto: `
             <strong>Felicidad</strong><br><br>
-            <u>Cómo sostenerla:</u>
-            <ul><li>Disfrutar el presente</li><li>Compartirlo</li></ul>`,
+            <strong>Cómo cuidarla:</strong>
+            <ul>
+                <li>Disfrutar el presente</li>
+                <li>Compartir lo que sientes</li>
+            </ul>`,
             video: "video-feliz"
         },
         enojado: {
             texto: `
             <strong>Enojo / Ira</strong><br><br>
-            <u>Posibles causas:</u>
-            <ul><li>Injusticias</li><li>No sentirte escuchado</li></ul>
-            <u>Qué puede ayudarte:</u>
-            <ul><li>Respirar antes de actuar</li><li>Canalizarlo de forma segura</li></ul>`,
+            <strong>Posibles causas:</strong>
+            <ul>
+                <li>Sentir injusticia</li>
+                <li>No ser escuchado</li>
+            </ul>
+            <strong>Posibles soluciones:</strong>
+            <ul>
+                <li>Respirar antes de reaccionar</li>
+                <li>Canalizarlo sin hacerte daño</li>
+            </ul>`,
             video: "video-enojado"
         },
         incomprendido: {
             texto: `
             <strong>Incomprendido/a</strong><br><br>
-            <u>Posibles causas:</u>
-            <ul><li>Falta de validación</li><li>Dificultad para expresarte</li></ul>
-            <u>Qué puede ayudarte:</u>
-            <ul><li>Recordar que tu sentir es válido</li><li>Buscar espacios seguros</li></ul>`,
+            <strong>Posibles causas:</strong>
+            <ul>
+                <li>Falta de validación emocional</li>
+                <li>Dificultad para expresarte</li>
+            </ul>
+            <strong>Posibles soluciones:</strong>
+            <ul>
+                <li>Recordar que tu sentir es válido</li>
+                <li>Buscar espacios seguros</li>
+            </ul>`,
             video: "video-incomprendido"
         }
     };
@@ -268,6 +289,8 @@ function guardarDesahogo() {
 
 </body>
 </html>
+
+
 
 
 
