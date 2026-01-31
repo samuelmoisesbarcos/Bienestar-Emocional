@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Bienestar Emocional</title>
+
+<style>
+:root {
+    --principal: #1f3a5f;
+    --secundario: #2f5d8a;
+    --fondo: #f2f4f7;
+    --texto: #2b2b2b;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--fondo);
+    margin: 0;
+    color: var(--texto);
+}
+
+header {
+    background-color: var(--principal);
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+}
+
+main {
+    max-width: 900px;
+    margin: auto;
+}
+
+section {
+    background: white;
+    margin: 20px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+h2 {
+    color: var(--principal);
+}
+
+select, textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px 18px;
+    background-color: var(--secundario);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--principal);
+}
+
+.rutina {
+    background-color: #eef2f6;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.video {
+    margin-top: 20px;
+    display: none;
+}
+
+iframe {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    border: none;
+}
+
+footer {
+    background-color: var(--principal);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Un espacio seguro para ti</h1>
+    <p>Todo lo que sientes es válido</p>
+</header>
+
+<main>
+
+<section>
+<h2>¿Cómo te sientes hoy?</h2>
+
+<select id="estado" onchange="mostrarContenido()">
+<option value="">Selecciona tu estado de ánimo</option>
+<option value="triste">Tristeza</option>
+<option value="ansioso">Ansiedad</option>
+<option value="cansado">Cansancio</option>
+<option value="feliz">Felicidad</option>
+<option value="enojado">Enojo / Ira</option>
+<option value="incomprendido">Incomprendido/a</option>
+</select>
+
+<div id="consejos" class="rutina"></div>
+
+<!-- VIDEOS -->
+
+<div id="video-triste" class="video">
+<iframe 
+src="https://www.tiktok.com/embed/7600929509658955024"
+allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+
+<div id="video-ansioso" class="video">
+<iframe 
+src="https://www.tiktok.com/embed/7411291586916601094"
+allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+
+<div id="video-cansado" class="video">
+<iframe 
+src="https://www.tiktok.com/embed/7563972666072304910"
+allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+
+<div id="video-feliz" class="video">
+<iframe 
+src="https://www.tiktok.com/embed/7520780620407065878"
+allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+
+<!-- ENOJADO (FUNCIONAL) -->
+<div id="video-enojado" class="video">
+<iframe 
+src="https://www.tiktok.com/embed/7355965420848844038"
+allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+
+<!-- INCOMPRENDIDO/A (FUNCIONAL) -->
+<div id="video-incomprendido" class="video">
+<iframe 
+src="https://www.tiktok.com/embed/7449487013373398277"
+allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+
+</section>
+
+<section>
+<h2>Un espacio para soltar</h2>
+<p>
+Ven, te invito a que nos cuentes qué es lo que sucede.  
+Exprésate sin miedo y sin juicios.  
+A veces escribirlo ya es un alivio enorme.
+</p>
+
+<textarea id="desahogo" rows="6" placeholder="Este espacio es solo tuyo..."></textarea>
+
+<button onclick="guardarDesahogo()">Guardar lo que siento</button>
+
+<p id="mensajeGuardado" style="margin-top:10px; color:var(--secundario);"></p>
+</section>
+
+</main>
+
+<footer>
+<p>Gracias por confiar en este espacio 💙</p>
+</footer>
+
+<script>
+function mostrarContenido() {
+    const estado = document.getElementById("estado").value;
+    const consejos = document.getElementById("consejos");
+
+    document.querySelectorAll(".video").forEach(v => v.style.display = "none");
+
+    const data = {
+        triste: {
+            texto: `
+            <strong>Tristeza</strong><br><br>
+            <u>Posibles causas:</u>
+            <ul><li>Pérdidas o decepciones</li><li>Cansancio emocional</li></ul>
+            <u>Qué puede ayudarte:</u>
+            <ul><li>Hablar con alguien</li><li>Permitirte sentir</li></ul>`,
+            video: "video-triste"
+        },
+        ansioso: {
+            texto: `
+            <strong>Ansiedad</strong><br><br>
+            <u>Posibles causas:</u>
+            <ul><li>Sobrecarga mental</li><li>Incertidumbre</li></ul>
+            <u>Qué puede ayudarte:</u>
+            <ul><li>Respiración consciente</li><li>Anclarte al presente</li></ul>`,
+            video: "video-ansioso"
+        },
+        cansado: {
+            texto: `
+            <strong>Cansancio</strong><br><br>
+            <u>Posibles causas:</u>
+            <ul><li>Exigencia constante</li><li>Poco descanso</li></ul>
+            <u>Qué puede ayudarte:</u>
+            <ul><li>Pausar sin culpa</li><li>Escucharte</li></ul>`,
+            video: "video-cansado"
+        },
+        feliz: {
+            texto: `
+            <strong>Felicidad</strong><br><br>
+            <u>Cómo sostenerla:</u>
+            <ul><li>Disfrutar el presente</li><li>Compartirlo</li></ul>`,
+            video: "video-feliz"
+        },
+        enojado: {
+            texto: `
+            <strong>Enojo / Ira</strong><br><br>
+            <u>Posibles causas:</u>
+            <ul><li>Injusticias</li><li>No sentirte escuchado</li></ul>
+            <u>Qué puede ayudarte:</u>
+            <ul><li>Respirar antes de actuar</li><li>Canalizarlo de forma segura</li></ul>`,
+            video: "video-enojado"
+        },
+        incomprendido: {
+            texto: `
+            <strong>Incomprendido/a</strong><br><br>
+            <u>Posibles causas:</u>
+            <ul><li>Falta de validación</li><li>Dificultad para expresarte</li></ul>
+            <u>Qué puede ayudarte:</u>
+            <ul><li>Recordar que tu sentir es válido</li><li>Buscar espacios seguros</li></ul>`,
+            video: "video-incomprendido"
+        }
+    };
+
+    if (data[estado]) {
+        consejos.innerHTML = data[estado].texto;
+        document.getElementById(data[estado].video).style.display = "block";
+    }
+}
+
+function guardarDesahogo() {
+    const texto = document.getElementById("desahogo").value;
+    if (texto.trim() !== "") {
+        localStorage.setItem("desahogo_usuario", texto);
+        document.getElementById("mensajeGuardado").innerText =
+        "Lo que escribiste quedó guardado. Gracias por expresarte.";
+    }
+}
+</script>
+
+</body>
+</html>
+
+
+
+
