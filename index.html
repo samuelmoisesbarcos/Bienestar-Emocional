@@ -16,8 +16,6 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     color: var(--texto);
-
-    /* FONDO CON TU IMAGEN */
     background-image: url("1.svg");
     background-size: cover;
     background-position: center;
@@ -49,12 +47,13 @@ h2 {
     color: var(--principal);
 }
 
-select, textarea {
+select, textarea, input {
     width: 100%;
     padding: 12px;
     border-radius: 8px;
     border: 1px solid #ccc;
-    margin-top: 10px;
+    margin-top: 8px;
+    margin-bottom: 10px;
     font-size: 14px;
 }
 
@@ -126,35 +125,23 @@ footer {
 <div id="consejos" class="rutina"></div>
 
 <div id="video-triste" class="video">
-<iframe src="https://www.tiktok.com/embed/7600929509658955024"
-allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe src="https://www.tiktok.com/embed/7600929509658955024" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
-
 <div id="video-ansioso" class="video">
-<iframe src="https://www.tiktok.com/embed/7411291586916601094"
-allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe src="https://www.tiktok.com/embed/7411291586916601094" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
-
 <div id="video-cansado" class="video">
-<iframe src="https://www.tiktok.com/embed/7563972666072304910"
-allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe src="https://www.tiktok.com/embed/7563972666072304910" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
-
 <div id="video-feliz" class="video">
-<iframe src="https://www.tiktok.com/embed/7520780620407065878"
-allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe src="https://www.tiktok.com/embed/7520780620407065878" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
-
 <div id="video-enojado" class="video">
-<iframe src="https://www.tiktok.com/embed/7355965420848844038"
-allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe src="https://www.tiktok.com/embed/7355965420848844038" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
-
 <div id="video-incomprendido" class="video">
-<iframe src="https://www.tiktok.com/embed/7449487013373398277"
-allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe src="https://www.tiktok.com/embed/7449487013373398277" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
-
 </section>
 
 <section>
@@ -170,127 +157,59 @@ A veces escribirlo ya es un alivio enorme.
 <p id="mensajeGuardado" style="margin-top:10px; color:var(--principal);"></p>
 </section>
 
+<section>
+<h2>Y CUÉNTEME</h2>
+
+<p><strong>1. ¿Qué cosas han influido en cómo te sientes hoy?</strong></p>
+<input placeholder="1.">
+<input placeholder="2.">
+<input placeholder="3.">
+<input placeholder="4.">
+<input placeholder="5.">
+
+<p><strong>2. ¿Qué pensamientos se repiten en tu mente?</strong></p>
+<input placeholder="1.">
+<input placeholder="2.">
+<input placeholder="3.">
+<input placeholder="4.">
+
+<p><strong>3. ¿Qué emociones identificas ahora mismo?</strong></p>
+<input placeholder="1.">
+<input placeholder="2.">
+
+<p><strong>4. ¿Qué necesitas en este momento?</strong></p>
+<input placeholder="1.">
+<input placeholder="2.">
+
+<p><strong>5. ¿Qué te ayudaría un poco hoy?</strong></p>
+<input placeholder="1.">
+
+<button onclick="guardarCuestionario()">Guardar respuestas</button>
+<p id="mensajeCuestionario" style="margin-top:10px; color:var(--principal);"></p>
+</section>
+
+<!-- IMAGEN FINAL VISIBLE -->
+<section style="background: transparent; box-shadow: none; padding: 10px;">
+    <img 
+        src="2.svg"
+        alt="Mensaje final de apoyo emocional"
+        style="
+            width: 100%;
+            max-width: 900px;
+            display: block;
+            margin: 40px auto;
+            border-radius: 15px;
+        ">
+</section>
+
 </main>
 
 <footer>
-<p>Gracias por confiar en este espacio 💙</p>
+    <p>NUNCA ESTARÁS SOLO. ESTAMOS PARA TI SIEMPRE.</p>
 </footer>
-
-<script>
-function mostrarContenido() {
-    const estado = document.getElementById("estado").value;
-    const consejos = document.getElementById("consejos");
-
-    document.querySelectorAll(".video").forEach(v => v.style.display = "none");
-
-    const data = {
-        triste: {
-            texto: `
-            <strong>Tristeza</strong><br><br>
-            <strong>Posibles causas:</strong>
-            <ul>
-                <li>Pérdidas emocionales</li>
-                <li>Agotamiento mental</li>
-            </ul>
-            <strong>Posibles soluciones:</strong>
-            <ul>
-                <li>Hablar con alguien de confianza</li>
-                <li>Permitirte sentir sin culpa</li>
-            </ul>`,
-            video: "video-triste"
-        },
-        ansioso: {
-            texto: `
-            <strong>Ansiedad</strong><br><br>
-            <strong>Posibles causas:</strong>
-            <ul>
-                <li>Sobrecarga de pensamientos</li>
-                <li>Miedo a lo incierto</li>
-            </ul>
-            <strong>Posibles soluciones:</strong>
-            <ul>
-                <li>Respirar lento y profundo</li>
-                <li>Enfocarte en el ahora</li>
-            </ul>`,
-            video: "video-ansioso"
-        },
-        cansado: {
-            texto: `
-            <strong>Cansancio</strong><br><br>
-            <strong>Posibles causas:</strong>
-            <ul>
-                <li>Exigirte demasiado</li>
-                <li>Falta de descanso</li>
-            </ul>
-            <strong>Posibles soluciones:</strong>
-            <ul>
-                <li>Pausar sin sentir culpa</li>
-                <li>Escuchar a tu cuerpo</li>
-            </ul>`,
-            video: "video-cansado"
-        },
-        feliz: {
-            texto: `
-            <strong>Felicidad</strong><br><br>
-            <strong>Cómo cuidarla:</strong>
-            <ul>
-                <li>Disfrutar el presente</li>
-                <li>Compartir lo que sientes</li>
-            </ul>`,
-            video: "video-feliz"
-        },
-        enojado: {
-            texto: `
-            <strong>Enojo / Ira</strong><br><br>
-            <strong>Posibles causas:</strong>
-            <ul>
-                <li>Sentir injusticia</li>
-                <li>No ser escuchado</li>
-            </ul>
-            <strong>Posibles soluciones:</strong>
-            <ul>
-                <li>Respirar antes de reaccionar</li>
-                <li>Canalizarlo sin hacerte daño</li>
-            </ul>`,
-            video: "video-enojado"
-        },
-        incomprendido: {
-            texto: `
-            <strong>Incomprendido/a</strong><br><br>
-            <strong>Posibles causas:</strong>
-            <ul>
-                <li>Falta de validación emocional</li>
-                <li>Dificultad para expresarte</li>
-            </ul>
-            <strong>Posibles soluciones:</strong>
-            <ul>
-                <li>Recordar que tu sentir es válido</li>
-                <li>Buscar espacios seguros</li>
-            </ul>`,
-            video: "video-incomprendido"
-        }
-    };
-
-    if (data[estado]) {
-        consejos.innerHTML = data[estado].texto;
-        document.getElementById(data[estado].video).style.display = "block";
-    }
-}
-
-function guardarDesahogo() {
-    const texto = document.getElementById("desahogo").value;
-    if (texto.trim() !== "") {
-        localStorage.setItem("desahogo_usuario", texto);
-        document.getElementById("mensajeGuardado").innerText =
-        "Lo que escribiste quedó guardado. Gracias por expresarte.";
-    }
-}
-</script>
 
 </body>
 </html>
-
-
 
 
 
